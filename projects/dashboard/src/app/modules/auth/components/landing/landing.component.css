@@ -1,0 +1,19 @@
+.center{
+    width: 75%;
+    margin: 10px auto;
+}
+  
+.main-div{
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-prop{
+    width: 400px;
+}
+
+.example-full-width {
+    width: 100%;
+  }
