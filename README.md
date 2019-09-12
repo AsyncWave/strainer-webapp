@@ -1,6 +1,11 @@
-# StrainerSpa
+# Strainer Wep App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.2.
+
+## Run with Docker
+1. Install [Docker](https://www.docker.com/products/docker-desktop) 
+2. Open terminal (PowerShell if on windows) and run `docker-compose up` on root directory.
+
 
 ## Development server
 
