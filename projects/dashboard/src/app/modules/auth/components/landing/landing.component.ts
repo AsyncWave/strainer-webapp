@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { QueryService } from '../../../../services/query.service';
+import { AlertifyService } from 'projects/dashboard/src/app/services/alertify.service';
+
 
 @Component({
   selector: 'app-landing',
@@ -6,10 +9,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
-
-  constructor() { }
+  model: any = {};
+  exist: boolean;
+  constructor(private queryService: QueryService, private alertify: AlertifyService) { }
 
   ngOnInit() {
+    this.model.screenname = 'nishan_cw';
+    this.model.query = 'hello';
+  }
+
+  sendQuery() {
+    this.model.screenname = this.model.screenname.replace(/@/g, '').toLowerCase();
+    this.queryService.checkExists(this.model.screenname).subscribe(res => {
+      // tslint:disable-next-line:no-string-literal
+      if (this.model.screenname === res['data'][0]['screen_name'].toLowerCase()) {
+        this.exist = true;
+        this.alertify.message('User found!');
+        // console.log('this.exist', this.exist);
+      }
+    }, error => {
+      // console.log('error at component', error);
+      this.exist = false;
+      this.alertify.error(error);
+    });
   }
 
 }

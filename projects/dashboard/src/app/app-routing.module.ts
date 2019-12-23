@@ -7,7 +7,7 @@ import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   {
     path: 'home',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: 'projects/dashboard/src/app/modules/navigation/navigation.module#NavigationModule'
   },
   {

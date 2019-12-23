@@ -2,14 +2,18 @@
         <span>Strainer</span>
 </mat-toolbar>
 <div class="main-div">
-    <mat-card class="mat-elevation-z8 card-prop">YOUR QUERY
-        <form class="example-form">
+    <mat-card class="mat-elevation-z8 card-prop">YOUR QUERY :
+        <form class="example-form" #queryForm="ngForm" (ngSubmit)="sendQuery()">
             <mat-form-field class="example-full-width">
-                <textarea [matTextareaAutosize] matInput placeholder="Type here."></textarea>
+                <textarea [matTextareaAutosize] matInput placeholder="Screen Name" required [(ngModel)]="model.screenname" name="screenname"></textarea>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <textarea [matTextareaAutosize] matInput placeholder="Tweet" required [(ngModel)]="model.query" name="query"></textarea>
             </mat-form-field>
             <br>
             <span>
-                    <button mat-raised-button color="primary" routerLink="/home/dashboard">Send Query</button>
+                    <button [disabled]="!queryForm.valid" mat-raised-button color="primary" >Send Query</button>
+                    <!-- routerLink="/home/dashboard" -->
             </span>
         </form>
     </mat-card>
