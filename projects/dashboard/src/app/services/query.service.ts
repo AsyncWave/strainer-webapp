@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
+import { Query } from '../models/Query';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QueryService {
-  twitter = environment.twitterApiUrl;
-
+  twitter = environment.nishanTwitterApiUrl;
+  baseUrl = environment.nishanApiUrl;
   constructor(private http: HttpClient) { }
 
   checkExists(screenName) {
@@ -24,13 +25,23 @@ export class QueryService {
     );
   }
 
-  sendQuery(model: any) {
-
+  sendQuery(model: Query) {
+    const headers = new HttpHeaders({'Content-type': 'application/json'});
+    const options = { headers };
+    console.log('model', model);
+    return this.http.post<any>(this.baseUrl + 'query', model, options).pipe(map(response => response))
+    .pipe(
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: any) {
+    // console.log('error',error);
     if (error.status === 404) {
       return throwError('No user matches for specified screen name');
+    }
+    if (error.status === 400) {
+      return throwError('Server error occoured');
     }
     // if (error.status === 401) {
     //   // this.router.navigate(['/home']);

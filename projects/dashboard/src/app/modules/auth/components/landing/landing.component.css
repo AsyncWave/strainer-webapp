@@ -1,13 +1,15 @@
+.head-logo {
+    display: flex;
+    justify-content: center;
+}
+
+::ng-deep .mat-app-background {
+    background-color:#001f3c;
+}
+
 .center{
     width: 75%;
     margin: 10px auto;
-}
-  
-.main-div{
-    height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .card-prop{
@@ -16,4 +18,4 @@
 
 .example-full-width {
     width: 100%;
-  }
+}

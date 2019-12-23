@@ -25,10 +25,14 @@ export class LandingComponent implements OnInit {
       if (this.model.screenname === res['data'][0]['screen_name'].toLowerCase()) {
         this.exist = true;
         this.alertify.message('User found!');
-        // console.log('this.exist', this.exist);
+        this.queryService.sendQuery(this.model).subscribe(responce => {
+          // console.log('responce', responce);
+          this.alertify.success(responce);
+        }, error => {
+          this.alertify.error(error);
+        });
       }
     }, error => {
-      // console.log('error at component', error);
       this.exist = false;
       this.alertify.error(error);
     });
