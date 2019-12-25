@@ -17,7 +17,7 @@ export class LandingComponent implements OnInit {
 
   ngOnInit() {
     // tslint:disable-next-line:max-line-length
-    particlesJS.load('particles-js', '../../../../../assets/data/particles.json', function() { console.log('callback - particles.js config loaded'); })
+    particlesJS.load('particles-js', './../../../../../assets/data/particles.json', function() { console.log('callback - particles.js config loaded'); })
     localStorage.removeItem('queryId');
     localStorage.removeItem('tweet');
     this.model.screenname = 'nishan_cw';
