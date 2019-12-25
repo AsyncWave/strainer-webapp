@@ -28,8 +28,20 @@ export class QueryService {
   sendQuery(model: Query) {
     const headers = new HttpHeaders({'Content-type': 'application/json'});
     const options = { headers };
-    console.log('model', model);
+    // console.log('model', model);
     return this.http.post<any>(this.baseUrl + 'query', model, options).pipe(map(response => response))
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getQuery(queryId) {
+    let options = null;
+    const queryString = queryId;
+
+    const headers = new HttpHeaders({'Content-type': 'application/json'});
+    options = { headers };
+    return this.http.get<any>(this.baseUrl + 'get/' + queryString, options).pipe(map(response => response))
     .pipe(
       catchError(this.handleError)
     );

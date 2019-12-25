@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QueryService } from '../../../../services/query.service';
 import { AlertifyService } from 'projects/dashboard/src/app/services/alertify.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,12 +12,15 @@ import { AlertifyService } from 'projects/dashboard/src/app/services/alertify.se
 export class LandingComponent implements OnInit {
   model: any = {};
   exist: boolean;
-  constructor(private queryService: QueryService, private alertify: AlertifyService) { }
+  constructor(private queryService: QueryService, private alertify: AlertifyService, private router: Router) { }
 
   ngOnInit() {
+    localStorage.removeItem('queryId');
+    localStorage.removeItem('tweet');
     this.model.screenname = 'nishan_cw';
-    this.model.query = 'hello1';
-    this.model.queryId = 26627243;
+    // tslint:disable-next-line:max-line-length
+    this.model.query = 'New poll shows Trump lead intact after criticism of Megyn Kelly: Donald Trump in the news: An online... http://t.co/LVhrFMWIpD #politics';
+    this.model.queryId = 90030072;
   }
 
   sendQuery() {
@@ -44,5 +48,19 @@ export class LandingComponent implements OnInit {
   }
 
   checkIn() {
+    this.queryService.getQuery(this.model.queryId).subscribe(responce => {
+      // console.log('responce', responce);
+      this.alertify.success('Tweet found');
+      this.alertify.message(responce[0].query);
+      localStorage.setItem('queryId', this.model.queryId);
+      localStorage.setItem('tweet', responce[0].query);
+
+    }, error => {
+      // console.log('responce', error);
+      this.alertify.alert('Oh--ooh!', error, () => {});
+      // this.alertify.error(error);
+    }, () => {
+      this.router.navigate(['/home/dashboard']);
+    });
   }
 }
