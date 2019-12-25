@@ -1,6 +1,6 @@
-<mat-toolbar color="primary" class="mat-elevation-z8">
+<!-- <mat-toolbar color="primary" class="mat-elevation-z8">
         <span>Strainer</span>
-</mat-toolbar>
+</mat-toolbar> -->
 <div class="head-logo">
     <img src="../../../../../assets/logo.png">
 </div>
@@ -17,7 +17,7 @@
                     </mat-form-field>
                     <br>
                     <span>
-                            <button [disabled]="!queryForm.valid" mat-raised-button color="primary" routerLink="/home/dashboard">SEND</button>
+                            <button [disabled]="!queryForm.valid" mat-raised-button color="primary">SEND</button>
                             <!-- routerLink="/home/dashboard" -->
                     </span>
                 </form>
@@ -25,13 +25,13 @@
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-card class="mat-elevation-z8 card-prop">CHECK IN :
-                <form class="example-form" #queryForm="ngForm" (ngSubmit)="sendQuery()">
+                <form class="example-form" #checkInForm="ngForm" (ngSubmit)="checkIn()">
                     <mat-form-field class="example-full-width">
-                        <textarea [matTextareaAutosize] matInput placeholder="Screen Name" required [(ngModel)]="model.screenname" name="screenname"></textarea>
+                        <textarea [matTextareaAutosize] matInput placeholder="Your ID" required [(ngModel)]="model.queryId" name="queryId"></textarea>
                     </mat-form-field>
                     <br>
                     <span>
-                            <button [disabled]="!queryForm.valid" mat-raised-button color="primary" >CHECK</button>
+                            <button [disabled]="!checkInForm.valid" mat-raised-button color="primary" >CHECK</button>
                             <!-- routerLink="/home/dashboard" -->
                     </span>
                 </form>

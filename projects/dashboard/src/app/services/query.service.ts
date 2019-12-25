@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { throwError, Observable } from 'rxjs';
+import { throwError } from 'rxjs';
 import { Query } from '../models/Query';
 
 @Injectable({
@@ -36,12 +36,15 @@ export class QueryService {
   }
 
   private handleError(error: any) {
-    // console.log('error',error);
+    // console.log('error', error);
     if (error.status === 404) {
       return throwError('No user matches for specified screen name');
     }
     if (error.status === 400) {
-      return throwError('Server error occoured');
+      return throwError(error.error.message);
+    }
+    if (error.status === 500) {
+      return throwError('Server error occured, please tr again');
     }
     // if (error.status === 401) {
     //   // this.router.navigate(['/home']);

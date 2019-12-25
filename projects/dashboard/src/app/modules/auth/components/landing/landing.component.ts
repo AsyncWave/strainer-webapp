@@ -15,21 +15,26 @@ export class LandingComponent implements OnInit {
 
   ngOnInit() {
     this.model.screenname = 'nishan_cw';
-    this.model.query = 'hello';
+    this.model.query = 'hello1';
+    this.model.queryId = 26627243;
   }
 
   sendQuery() {
     this.model.screenname = this.model.screenname.replace(/@/g, '').toLowerCase();
     this.queryService.checkExists(this.model.screenname).subscribe(res => {
       // tslint:disable-next-line:no-string-literal
-      if (this.model.screenname === res['data'][0]['screen_name'].toLowerCase()) {
+      if (this.model.screenname === res[0]['screen_name'].toLowerCase()) {
         this.exist = true;
         this.alertify.message('User found!');
         this.queryService.sendQuery(this.model).subscribe(responce => {
           // console.log('responce', responce);
-          this.alertify.success(responce);
+          this.alertify.success(responce.message);
+          // tslint:disable-next-line:max-line-length
+          this.alertify.alert('Heads up!', ' Please copy this query Id > ' + responce.queryId + ', check back again later and provide it at \'CHECK IN\'', () => {});
         }, error => {
-          this.alertify.error(error);
+          // console.log('responce', error);
+          this.alertify.alert('Oh--ooh!', error, () => {});
+          // this.alertify.error(error);
         });
       }
     }, error => {
@@ -38,4 +43,6 @@ export class LandingComponent implements OnInit {
     });
   }
 
+  checkIn() {
+  }
 }
