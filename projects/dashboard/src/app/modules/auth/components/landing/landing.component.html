@@ -1,42 +1,63 @@
 <!-- <mat-toolbar color="primary" class="mat-elevation-z8">
         <span>Strainer</span>
 </mat-toolbar> -->
-<div class="head-logo">
-    <img src="../../../../../assets/logo-home.png">
+<div class="container">
+    <div id="particles-js">
+    </div>
+    <div style="z-index:100;" id="over">
+        <div class="head-logo">
+            <img src="../../../../../assets/logo-home.png">
+        </div>
+        <div class="grid-container">
+            <mat-grid-list cols="2" rowHeight="350px">
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-card class="mat-elevation-z8 card-prop">YOUR QUERY :
+                        <form class="example-form" #queryForm="ngForm" (ngSubmit)="sendQuery()">
+                            <mat-form-field class="example-full-width">
+                                <textarea [matTextareaAutosize] matInput placeholder="Screen Name" required [(ngModel)]="model.screenname" name="screenname"></textarea>
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width">
+                                <textarea [matTextareaAutosize] matInput placeholder="Tweet" required [(ngModel)]="model.query" name="query"></textarea>
+                            </mat-form-field>
+                            <br>
+                            <span>
+                                    <button [disabled]="!queryForm.valid" mat-raised-button color="primary">SEND</button>
+                                    <!-- routerLink="/home/dashboard" -->
+                            </span>
+                        </form>
+                    </mat-card>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-card class="mat-elevation-z8 card-prop">CHECK IN :
+                        <form class="example-form" #checkInForm="ngForm" (ngSubmit)="checkIn()">
+                            <mat-form-field class="example-full-width">
+                                <textarea [matTextareaAutosize] matInput placeholder="Your ID" required [(ngModel)]="model.queryId" name="queryId"></textarea>
+                            </mat-form-field>
+                            <br>
+                            <span>
+                                    <button [disabled]="!checkInForm.valid" mat-raised-button color="primary" >CHECK</button>
+                                    <!-- routerLink="/home/dashboard" -->
+                            </span>
+                        </form>
+                    </mat-card>  
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <div class="content">
+                    <p style="text-align: center;font-size: 12px;">
+                        Made with <font color="#c2185b">❤</font> by <a href="https://www.linkedin.com/company/asyncwave">AyncWave</a>
+                        <br>
+                        As their final year project at the Faculty of Information Tecnology, 
+                        University of Moratuwa, Sri Lanka.
+                        <br> First became online on Christmas 2019.
+                    </p>
+                </div>
+            </div>
+        </footer>  
+    </div>
 </div>
-<div class="grid-container">
-    <mat-grid-list cols="2" rowHeight="350px">
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-            <mat-card class="mat-elevation-z8 card-prop">YOUR QUERY :
-                <form class="example-form" #queryForm="ngForm" (ngSubmit)="sendQuery()">
-                    <mat-form-field class="example-full-width">
-                        <textarea [matTextareaAutosize] matInput placeholder="Screen Name" required [(ngModel)]="model.screenname" name="screenname"></textarea>
-                    </mat-form-field>
-                    <mat-form-field class="example-full-width">
-                        <textarea [matTextareaAutosize] matInput placeholder="Tweet" required [(ngModel)]="model.query" name="query"></textarea>
-                    </mat-form-field>
-                    <br>
-                    <span>
-                            <button [disabled]="!queryForm.valid" mat-raised-button color="primary">SEND</button>
-                            <!-- routerLink="/home/dashboard" -->
-                    </span>
-                </form>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-            <mat-card class="mat-elevation-z8 card-prop">CHECK IN :
-                <form class="example-form" #checkInForm="ngForm" (ngSubmit)="checkIn()">
-                    <mat-form-field class="example-full-width">
-                        <textarea [matTextareaAutosize] matInput placeholder="Your ID" required [(ngModel)]="model.queryId" name="queryId"></textarea>
-                    </mat-form-field>
-                    <br>
-                    <span>
-                            <button [disabled]="!checkInForm.valid" mat-raised-button color="primary" >CHECK</button>
-                            <!-- routerLink="/home/dashboard" -->
-                    </span>
-                </form>
-            </mat-card>  
-        </mat-grid-tile>
-    </mat-grid-list>
-</div>
+
+
 

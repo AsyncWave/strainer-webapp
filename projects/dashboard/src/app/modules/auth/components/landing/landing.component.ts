@@ -3,6 +3,7 @@ import { QueryService } from '../../../../services/query.service';
 import { AlertifyService } from 'projects/dashboard/src/app/services/alertify.service';
 import { Router } from '@angular/router';
 
+declare var particlesJS: any;
 
 @Component({
   selector: 'app-landing',
@@ -15,6 +16,8 @@ export class LandingComponent implements OnInit {
   constructor(private queryService: QueryService, private alertify: AlertifyService, private router: Router) { }
 
   ngOnInit() {
+    // tslint:disable-next-line:max-line-length
+    particlesJS.load('particles-js', '../../../../../assets/data/particles.json', function() { console.log('callback - particles.js config loaded'); })
     localStorage.removeItem('queryId');
     localStorage.removeItem('tweet');
     this.model.screenname = 'nishan_cw';
