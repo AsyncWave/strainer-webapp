@@ -14,9 +14,19 @@
 #over {
   z-index: 10;
 }
+
+@media screen and (max-width: 480px) {
+  img {
+       width: 400px;
+  }
+}
 .head-logo {
     display: flex;
     justify-content: center;
+}
+
+.head-logo img {
+  max-width: 800px;
 }
 
 ::ng-deep .mat-app-background {
