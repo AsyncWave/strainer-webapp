@@ -10,7 +10,6 @@ import { QueryService } from './services/query.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { AlertifyService } from './services/alertify.service';
-import { ParticlesjsconfigService } from './services/particlesjsconfig.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,7 @@ import { ParticlesjsconfigService } from './services/particlesjsconfig.service';
     HttpClientModule,
     NgHttpLoaderModule.forRoot()
   ],
-  providers: [QueryService, AlertifyService, ParticlesjsconfigService],
+  providers: [QueryService, AlertifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

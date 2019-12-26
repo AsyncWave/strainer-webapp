@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QueryService } from '../../../../services/query.service';
 import { AlertifyService } from 'projects/dashboard/src/app/services/alertify.service';
 import { Router } from '@angular/router';
-import { ParticlesjsconfigService } from 'projects/dashboard/src/app/services/particlesjsconfig.service';
-// import SampleJson from '../../../../../assets/data/particles.json';
+
 declare var particlesJS: any;
 
 @Component({
@@ -18,15 +17,7 @@ export class LandingComponent implements OnInit {
   constructor(private queryService: QueryService, private alertify: AlertifyService, private router: Router) { }
 
   ngOnInit() {
-    // this.config.getJSON().subscribe(data => {
-    //   console.log(data);
-    //   // tslint:disable-next-line:max-line-length
-
-    //  });
-    // tslint:disable-next-line:max-line-length
-    particlesJS.load('particles-js', '../../../../../assets/data/particles.json', function() {
-      console.log('callback - particles.js config loaded');
-    });
+    particlesJS.load('particles-js', '../../../../../assets/data/particles.json');
     localStorage.removeItem('queryId');
     localStorage.removeItem('tweet');
     this.model.screenname = 'nishan_cw';
