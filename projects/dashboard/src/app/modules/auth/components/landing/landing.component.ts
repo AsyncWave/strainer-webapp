@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QueryService } from '../../../../services/query.service';
 import { AlertifyService } from 'projects/dashboard/src/app/services/alertify.service';
 import { Router } from '@angular/router';
+import { ParticlesjsconfigService } from 'projects/dashboard/src/app/services/particlesjsconfig.service';
 // import SampleJson from '../../../../../assets/data/particles.json';
 declare var particlesJS: any;
 
@@ -13,12 +14,19 @@ declare var particlesJS: any;
 export class LandingComponent implements OnInit {
   model: any = {};
   exist: boolean;
+  // tslint:disable-next-line:max-line-length
   constructor(private queryService: QueryService, private alertify: AlertifyService, private router: Router) { }
 
   ngOnInit() {
+    // this.config.getJSON().subscribe(data => {
+    //   console.log(data);
+    //   // tslint:disable-next-line:max-line-length
+
+    //  });
     // tslint:disable-next-line:max-line-length
-    // console.log(SampleJson);
-    particlesJS.load('particles-js', '../../../../../assets/data/particles.json', function() { console.log('callback - particles.js config loaded'); })
+    particlesJS.load('particles-js', '../../../../../assets/data/particles.json', function() {
+      console.log('callback - particles.js config loaded');
+    });
     localStorage.removeItem('queryId');
     localStorage.removeItem('tweet');
     this.model.screenname = 'nishan_cw';
