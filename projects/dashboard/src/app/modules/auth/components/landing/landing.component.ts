@@ -13,6 +13,7 @@ declare var particlesJS: any;
 export class LandingComponent implements OnInit {
   model: any = {};
   exist: boolean;
+  year = new Date().getFullYear();
   // tslint:disable-next-line:max-line-length
   constructor(private queryService: QueryService, private alertify: AlertifyService, private router: Router) { }
 
