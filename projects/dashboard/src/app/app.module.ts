@@ -10,6 +10,7 @@ import { QueryService } from './services/query.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { AlertifyService } from './services/alertify.service';
+import { DashboardService } from './services/dashboard.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { AlertifyService } from './services/alertify.service';
     HttpClientModule,
     NgHttpLoaderModule.forRoot()
   ],
-  providers: [QueryService, AlertifyService],
+  providers: [QueryService, AlertifyService, DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
