@@ -23,6 +23,16 @@ constructor(private http: HttpClient) { }
     );
   }
 
+  sendName(name: string) {
+    const headers = new HttpHeaders({'Content-type': 'application/json'});
+    const options = { headers };
+    // console.log('model', model);
+    return this.http.get<any>(this.baseUrl + 'bot/' + name, options).pipe(map(response => response))
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: any) {
     // console.log('error', error);
     if (error.status === 404) {
@@ -35,5 +45,4 @@ constructor(private http: HttpClient) { }
       return throwError('Server error occured, please tr again');
     }
   }
-
 }

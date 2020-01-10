@@ -53,7 +53,7 @@ export class QueryService {
       return throwError('No user matches for specified screen name');
     }
     if (error.status === 400) {
-      return throwError(error.error.message);
+      return throwError(error.error);
     }
     if (error.status === 500) {
       return throwError('Server error occured, please tr again');

@@ -6,13 +6,13 @@
         <mat-card-header>
           <mat-card-title>
             Initial Credibility
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+            <!-- <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu" xPosition="before">
               <button mat-menu-item>Expand</button>
               <button mat-menu-item>Remove</button>
-            </mat-menu>
+            </mat-menu> -->
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
@@ -21,7 +21,7 @@
           <h1>{{model?.prediction}}</h1>
         </div>
         <div>
-          ...but please be patience and check back again later, we have started processing your query.
+          ...but please be patient and check back again later, we have started processing your query.
         </div>
         </mat-card-content>
       </mat-card>
@@ -30,18 +30,22 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            In Progress
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+            Automated Account?
+            <!-- <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu" xPosition="before">
               <button mat-menu-item>Expand</button>
               <button mat-menu-item>Remove</button>
-            </mat-menu>
+            </mat-menu> -->
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
+          <div>
+            The Twitter account that this tweet belongs to can be classified as a, <br> 
+            <h1>{{model?.predictionUser}}</h1>
+          </div>
+          <div>...but please be patient and check back again later, we have started processing your query.</div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

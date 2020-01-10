@@ -12,6 +12,7 @@ import { TweetForInitialCredibility } from 'projects/dashboard/src/app/models/Tw
 })
 export class DashboardComponent implements OnInit {
   tweet: TweetForInitialCredibility = { tweet: 'null'};
+  name: string;
   model: any = {};
   /** Based on the screen size, switch from standard to one column per row */
   // cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -38,8 +39,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.tweet.tweet = localStorage.getItem('tweet');
+    this.name = localStorage.getItem('name');
     // console.log('tweet', this.tweet.tweet);
     this.getInitialCredibility();
+    this.getAutomatedAcc();
   }
 
   getInitialCredibility() {
@@ -49,6 +52,21 @@ export class DashboardComponent implements OnInit {
         this.model.prediction = 'Not Credible';
       } else {
         this.model.prediction = 'Credible';
+      }
+    }, error => {
+      // console.log('responce', error);
+      this.alertify.alert('Oh--ooh!', error, () => {});
+      // this.alertify.error(error);
+    });
+  }
+
+  getAutomatedAcc() {
+    this.dashboardService.sendName(this.name).subscribe(res => {
+      // console.log(res.prediction);
+      if (res.prediction === 0) {
+        this.model.predictionUser = 'Authentic Account';
+      } else {
+        this.model.predictionUser = 'Bot Account';
       }
     }, error => {
       // console.log('responce', error);

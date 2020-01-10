@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { AlertifyService } from './services/alertify.service';
 import { DashboardService } from './services/dashboard.service';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { DashboardService } from './services/dashboard.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MatDialogModule,
     HttpClientModule,
     NgHttpLoaderModule.forRoot()
   ],

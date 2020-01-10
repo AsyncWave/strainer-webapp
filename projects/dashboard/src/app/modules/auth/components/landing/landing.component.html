@@ -11,31 +11,36 @@
         <div class="grid-container">
             <mat-grid-list cols="2" rowHeight="350px">
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-card class="mat-elevation-z8 card-prop">YOUR QUERY :
+                    <mat-card class="mat-elevation-z8 card-prop">YOUR QUERY :                        
+                    <span>
+                        <button style="float: right;" mat-raised-button (click)="openDialog()" color="accent" matTooltip="Click to get help">HELP ME</button>
+                    </span>
                         <form class="example-form" #queryForm="ngForm" (ngSubmit)="sendQuery()">
                             <mat-form-field class="example-full-width">
-                                <textarea [matTextareaAutosize] matInput placeholder="Screen Name" required [(ngModel)]="model.screenname" name="screenname"></textarea>
+                                <textarea [matTextareaAutosize] matInput placeholder="Screen Name" required [(ngModel)]="model.screenname" name="screenname" matTooltip="Insert screen name of the user here..."></textarea>
                             </mat-form-field>
                             <mat-form-field class="example-full-width">
-                                <textarea [matTextareaAutosize] matInput placeholder="Tweet" required [(ngModel)]="model.query" name="query"></textarea>
+                                <textarea [matTextareaAutosize] matInput placeholder="Tweet" required [(ngModel)]="model.query" name="query" matTooltip="Insert suspicious tweet here..."></textarea>
                             </mat-form-field>
                             <br>
                             <span>
-                                    <button [disabled]="!queryForm.valid" mat-raised-button color="primary">SEND</button>
+                                    <button [disabled]="!queryForm.valid" mat-raised-button color="primary" matTooltip="Click to send">SEND</button>&nbsp;
                                     <!-- routerLink="/home/dashboard" -->
                             </span>
                         </form>
+
+
                     </mat-card>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-card class="mat-elevation-z8 card-prop">CHECK IN :
                         <form class="example-form" #checkInForm="ngForm" (ngSubmit)="checkIn()">
                             <mat-form-field class="example-full-width">
-                                <textarea [matTextareaAutosize] matInput placeholder="Your ID" required [(ngModel)]="model.queryId" name="queryId"></textarea>
+                                <textarea [matTextareaAutosize] matInput placeholder="Your ID" required [(ngModel)]="model.queryId" name="queryId" matTooltip="Insert query Id you received here..."></textarea>
                             </mat-form-field>
                             <br>
                             <span>
-                                    <button [disabled]="!checkInForm.valid" mat-raised-button color="primary" >CHECK</button>
+                                    <button [disabled]="!checkInForm.valid" mat-raised-button color="primary" matTooltip="Click to view results">CHECK</button>
                                     <!-- routerLink="/home/dashboard" -->
                             </span>
                         </form>
