@@ -18,7 +18,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { NetworkComponent } from './components/network/network.component';
-
+import { MatProgressBarModule } from '@angular/material';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [NavComponent, DashboardComponent, ProfileComponent, NetworkComponent],
@@ -36,7 +37,9 @@ import { NetworkComponent } from './components/network/network.component';
     MatMenuModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressBarModule,
+    MatStepperModule
   ]
 })
 export class NavigationModule { }

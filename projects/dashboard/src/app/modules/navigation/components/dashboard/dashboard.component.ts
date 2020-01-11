@@ -4,6 +4,8 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { DashboardService } from 'projects/dashboard/src/app/services/dashboard.service';
 import { AlertifyService } from 'projects/dashboard/src/app/services/alertify.service';
 import { TweetForInitialCredibility } from 'projects/dashboard/src/app/models/TweetForInitialCredibility';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { Progress } from 'projects/dashboard/src/app/models/Progress';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,35 +16,30 @@ export class DashboardComponent implements OnInit {
   tweet: TweetForInitialCredibility = { tweet: 'null'};
   name: string;
   model: any = {};
-  /** Based on the screen size, switch from standard to one column per row */
-  // cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-  //   map(({ matches }) => {
-  //     if (matches) {
-  //       return [
-  //         { title: 'Card 1', cols: 1, rows: 1 },
-  //         { title: 'Card 2', cols: 1, rows: 1 },
-  //         { title: 'Card 3', cols: 1, rows: 1 },
-  //         { title: 'Card 4', cols: 1, rows: 1 }
-  //       ];
-  //     }
+  queryId: number;
+  progress: Progress = {
+    dataCollected: false,
+    credibility: false,
+    profile: false,
+    network: false,
+  };
+  overallProgress = 0;
 
-  //     return [
-  //       { title: 'Card 1', cols: 2, rows: 1 },
-  //       { title: 'Card 2', cols: 1, rows: 1 },
-  //       { title: 'Card 3', cols: 1, rows: 2 },
-  //       { title: 'Card 4', cols: 1, rows: 1 }
-  //     ];
-  //   })
-  // );
+  color = 'primary';
+  mode = 'buffer';
+  value = 0;
+  bufferValue = 0;
   // tslint:disable-next-line:max-line-length
   constructor(private breakpointObserver: BreakpointObserver, private dashboardService: DashboardService, private alertify: AlertifyService) {}
 
   ngOnInit() {
     this.tweet.tweet = localStorage.getItem('tweet');
     this.name = localStorage.getItem('name');
-    // console.log('tweet', this.tweet.tweet);
+    this.queryId = +localStorage.getItem('queryId');
+    // console.log('tweet', this.tweet.tweet);queryId
     this.getInitialCredibility();
     this.getAutomatedAcc();
+    this.getProgress();
   }
 
   getInitialCredibility() {
@@ -72,6 +69,32 @@ export class DashboardComponent implements OnInit {
       // console.log('responce', error);
       this.alertify.alert('Oh--ooh!', error, () => {});
       // this.alertify.error(error);
+    });
+  }
+
+  getProgress() {
+    this.dashboardService.progress(this.queryId).subscribe(res => {
+      this.progress.dataCollected = res[0].dataCollected;
+      this.progress.credibility = res[0].credibility;
+      this.progress.network = res[0].network;
+      this.progress.profile = res[0].profile;
+
+      if (this.progress.dataCollected === true) {
+        this.overallProgress += 25;
+      }
+      if (this.progress.credibility === true) {
+        this.overallProgress += 25;
+      }
+      if (this.progress.network === true) {
+        this.overallProgress += 25;
+      }
+      if (this.progress.profile === true) {
+        this.overallProgress += 25;
+      }
+      this.bufferValue = this.overallProgress + 10;
+    }, error => {
+      // console.log('responce', error);
+      this.alertify.alert('Oh--ooh!', error, () => {});
     });
   }
 

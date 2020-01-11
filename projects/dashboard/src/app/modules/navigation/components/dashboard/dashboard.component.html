@@ -1,6 +1,6 @@
 <div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
+  <h2 class="mat-h1">Dashboard</h2>
+  <mat-grid-list cols="2" rowHeight="300px">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
       <mat-card class="dashboard-card">
         <mat-card-header>
@@ -30,7 +30,7 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Automated Account?
+            Automated Account
             <!-- <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
@@ -42,10 +42,53 @@
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <div>
-            The Twitter account that this tweet belongs to can be classified as a, <br> 
+            The Twitter account that this tweet belongs to can be classified as, <br> 
             <h1>{{model?.predictionUser}}</h1>
           </div>
           <div>...but please be patient and check back again later, we have started processing your query.</div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="2" rowHeight="350px">
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Progress
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+        <mat-progress-bar
+          [color]="color"
+          [mode]="mode"
+          value={{overallProgress}}
+          [bufferValue]="bufferValue">
+        </mat-progress-bar>
+        <br>
+        <div>
+        <h3>Overall progress is at</h3><h1>{{overallProgress}}%</h1>
+        <br> 
+        </div>
+        <div>
+          <mat-horizontal-stepper [linear]="true" #stepper aria-disabled="true">
+            <mat-step completed="true">
+              <ng-template matStepLabel>Collecting Data</ng-template>
+            </mat-step>
+            <mat-step completed={{this.progress.dataCollected}}>
+              <ng-template matStepLabel>Content Credibility</ng-template>
+            </mat-step>
+            <mat-step completed={{this.progress.credibility}}>
+              <ng-template matStepLabel>User Crediility</ng-template>
+            </mat-step>
+            <mat-step completed={{this.progress.profile}}>
+              <ng-template matStepLabel>Forcast</ng-template>
+            </mat-step>
+            <mat-step completed={{this.progress.network}}>
+              <ng-template matStepLabel>Done</ng-template>
+            </mat-step>
+          </mat-horizontal-stepper>
+        </div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

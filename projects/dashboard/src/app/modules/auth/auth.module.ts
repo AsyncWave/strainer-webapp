@@ -9,7 +9,6 @@ import { MaterialModule } from '../../material.module';
 import { FormsModule } from '@angular/forms';
 import { QueryService } from '../../services/query.service';
 import { MatDialogModule } from '@angular/material';
-
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, LandingComponent, DialogContentExampleDialog],
   entryComponents: [DialogContentExampleDialog],
