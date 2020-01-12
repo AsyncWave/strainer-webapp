@@ -1,7 +1,12 @@
 h1 {
   color: #01cd6d;
 }
-
+.emp{
+  color: #01cd6d;
+}
+.cont{
+  display: inline-block;
+}
 ::ng-deep .mat-horizontal-stepper-header{
   pointer-events: none !important;
 }

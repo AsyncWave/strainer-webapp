@@ -1,5 +1,18 @@
 <div class="grid-container">
-  <h2 class="mat-h1">Dashboard</h2>
+<mat-grid-list cols="2" rowHeight="170px">
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-card class="dashboard-card">
+      <mat-card-header>
+        <mat-card-title>
+          Tweet
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-card-content">
+        <div class="emp">"{{this.tweet.tweet}}"</div> by <div class="emp">"@{{this.name}}"</div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
   <mat-grid-list cols="2" rowHeight="300px">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
       <mat-card class="dashboard-card">

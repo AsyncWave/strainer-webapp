@@ -9,7 +9,7 @@
             <img src="../../../../../assets/logo-home.png" class="img-responsive">
         </div>
         <div class="grid-container">
-            <mat-grid-list cols="2" rowHeight="350px">
+            <mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)" rowHeight="350px">
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-card class="mat-elevation-z8 card-prop">YOUR QUERY :                        
                     <span>
@@ -28,8 +28,6 @@
                                     <!-- routerLink="/home/dashboard" -->
                             </span>
                         </form>
-
-
                     </mat-card>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="1" [rowspan]="1">

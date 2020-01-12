@@ -15,18 +15,27 @@ export class LandingComponent implements OnInit {
   model: any = {};
   exist: boolean;
   year = new Date().getFullYear();
+  breakpoint: any;
   // tslint:disable-next-line:max-line-length
   constructor(public dialog: MatDialog, private queryService: QueryService, private alertify: AlertifyService, private router: Router) { }
 
   ngOnInit() {
     particlesJS.load('particles-js', '../../../../../assets/data/particles.json');
+    this.breakpoint = (window.innerWidth <= 400) ? 1 : 2;
     localStorage.removeItem('queryId');
     localStorage.removeItem('tweet');
     localStorage.removeItem('name');
-    this.model.screenname = 'nishan_cw';
+    this.model.screenname = 'abc';
     // tslint:disable-next-line:max-line-length
-    this.model.query = 'New poll shows Trump lead intact after criticism of Megyn Kelly: Donald Trump in the news: An online... http://t.co/LVhrFMWIpD #politics';
+    this.model.query = 'Pres. Trump’s tariffs and the retaliation by countries he has targeted have resulted in job losses and higher costs for U.S. manufacturers, a federal study recently found.'
+
+    // tslint:disable-next-line:max-line-length
+    // this.model.query = 'New poll shows Trump lead intact after criticism of Megyn Kelly: Donald Trump in the news: An online... http://t.co/LVhrFMWIpD #politics';
     this.model.queryId = '';
+  }
+
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 2;
   }
 
   openDialog() {
