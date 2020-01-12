@@ -21,7 +21,7 @@ export class LandingComponent implements OnInit {
 
   ngOnInit() {
     particlesJS.load('particles-js', '../../../../../assets/data/particles.json');
-    this.breakpoint = (window.innerWidth <= 400) ? 1 : 2;
+    this.breakpoint = (window.innerWidth <= 480) ? 1 : 2;
     localStorage.removeItem('queryId');
     localStorage.removeItem('tweet');
     localStorage.removeItem('name');
@@ -35,7 +35,7 @@ export class LandingComponent implements OnInit {
   }
 
   onResize(event) {
-    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 2;
+    this.breakpoint = (event.target.innerWidth <= 480) ? 1 : 2;
   }
 
   openDialog() {
