@@ -14,6 +14,14 @@
 #over {
   z-index: 10;
 }
+textarea {
+  resize: none;
+}
+
+textarea  {
+  overflow: hidden !important;
+}
+
 footer {
   background-color: rgba(51, 51, 51, 0.5);
   width: 100%;
