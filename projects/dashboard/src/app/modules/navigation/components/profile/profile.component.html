@@ -1,6 +1,23 @@
 <div class="main-content">
+    
   <div class="container-fluid">
+    <button (click)="getUserProfile()" class="btn btn-danger btn-round">Click me</button>
       <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-profile">
+                <div class="card-avatar">
+                    <a href="javascript:void(0)">
+                        <img class="img" src="{{user.profile_image_url_https}}" />
+                    </a>
+                </div>
+                <div class="card-body" *ngIf="user">
+                    <h6 class="card-category text-gray">CEO / Co-Founder</h6>
+                    <h4 class="card-title">{{user.user}}</h4>
+                    <p class="card-description">{{user.description}}</p>
+                    <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a>
+                </div>
+            </div>
+        </div>
           <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
                   <div class="card-header card-header-warning card-header-icon">
@@ -52,22 +69,7 @@
                   </div>
               </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                  <div class="card-header card-header-info card-header-icon">
-                      <div class="card-icon">
-                          <i class="fa fa-twitter"></i>
-                      </div>
-                      <p class="card-category">Followers</p>
-                      <h3 class="card-title">+245</h3>
-                  </div>
-                  <div class="card-footer">
-                      <div class="stats">
-                          <i class="material-icons">update</i> Just Updated
-                      </div>
-                  </div>
-              </div>
-          </div>
+          
       </div>
       <div class="row">
           <div class="col-md-4">

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import { ProfileService } from 'projects/dashboard/src/app/services/profile.service';
+import { AlertifyService } from 'projects/dashboard/src/app/services/alertify.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,8 +9,23 @@ import * as Chartist from 'chartist';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
-  constructor() { }
+  
+  constructor(private profileService: ProfileService, private alertify: AlertifyService) { }
+  username: string;
+  user: any = {};
+  getUserProfile(){
+    console.log('clicked');
+    this.username = 'UnboxTherapy';
+    this.profileService.getUserProfileService(this.username).subscribe(res => {
+      this.user = res;
+      console.log(res);
+      
+    }, error => {
+      // console.log('responce', error);
+      this.alertify.alert('Oh--ooh!', error, () => {});
+      // this.alertify.error(error);
+    });
+  }
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
