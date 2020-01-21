@@ -12,6 +12,7 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
 import { AlertifyService } from './services/alertify.service';
 import { DashboardService } from './services/dashboard.service';
 import { MatDialogModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MatDialogModule } from '@angular/material';
     MaterialModule,
     MatDialogModule,
     HttpClientModule,
-    NgHttpLoaderModule.forRoot()
+    NgHttpLoaderModule.forRoot(),
+    FormsModule
   ],
   providers: [QueryService, AlertifyService, DashboardService],
   bootstrap: [AppComponent]

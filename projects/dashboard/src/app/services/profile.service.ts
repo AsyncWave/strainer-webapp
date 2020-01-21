@@ -17,6 +17,7 @@ export class ProfileService {
   getUserProfileService(username: string) {
     const headers = new HttpHeaders({'Content-type': 'application/json'});
     const options = { headers };
+    console.log(username);
     // console.log('model', model);
     return this.http.get<any>(this.baseUrl + 'getUserProfile/' + username, options).pipe(map(response => response))
     .pipe(

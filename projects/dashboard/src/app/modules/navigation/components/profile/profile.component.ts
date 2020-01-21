@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
 import { ProfileService } from 'projects/dashboard/src/app/services/profile.service';
 import { AlertifyService } from 'projects/dashboard/src/app/services/alertify.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -13,6 +14,7 @@ export class ProfileComponent implements OnInit {
   constructor(private profileService: ProfileService, private alertify: AlertifyService) { }
   username: string;
   user: any = {};
+ 
   getUserProfile(){
     console.log('clicked');
     this.username = 'UnboxTherapy';
