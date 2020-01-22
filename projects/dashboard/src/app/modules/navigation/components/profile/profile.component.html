@@ -1,42 +1,57 @@
 <div class="main-content">
 
     <div class="container-fluid">
-        <div class="row">
+        <div   class="row">
             <div class="input-group no-border" style="width: 50%; align-content: center;">
-                <input  (ngModel)="username"  placeholder="Search a twitter user...">
-                <button  (click)="getUserProfile()" mat-raised-button  class="btn btn-white btn-round btn-just-icon">
+                <input #box placeholder="Search a twitter user...">
+                <button (click)="getUserProfile(box.value)" mat-raised-button
+                    class="btn btn-white btn-round btn-just-icon">
                     <i class="material-icons">search</i>
                     <div class="ripple-container"></div>
                 </button>
             </div>
-        </div>
-        <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-profile">
-                <div class="card-avatar">
-                    <a href="javascript:void(0)">
-                        <img class="img" src="{{user.profile_image_url_https}}" />
-                    </a>
-                </div>
-                <div class="card-body" *ngIf="user">
-                    <h6 class="card-category text-gray"></h6>
-                    <h4 class="card-title">{{user.user}}</h4>
-                    <p class="card-description">{{user.description}}</p>
-                    <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a>
+        </div  >
+        <div  class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div style="height: 300px;" class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="javascript:void(0)">
+                            <img class="img" src="{{user.profile_image_url_https}}" />
+                        </a>
+                    </div>
+                    <div class="card-body" *ngIf="user">
+                        <h6 class="card-category text-gray"></h6>
+                        <h4 class="card-title">{{user.user}}</h4>
+                        <p class="card-description">{{user.description}}</p>
+                        <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div style="height: 300px;" class="card card-profile">
+                    <div class="card-avatar">
+                        
+                    </div>
+                    <div class="card-body" *ngIf="user">
+                        <h6 class="card-category text-gray">Credibility Rating</h6>
+                        <h4 class="card-title">{{user.user}}</h4>
+                        <p class="card-description">{{user.description}}</p>
+                        <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
-                    <div  class="card-header card-header-warning card-header-icon">
-                        <div *ngIf="user" class="card-icon">
-                            <img class="img" src="{{user.profile_image_url_https}}" />
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <img class="img" src="../../../../../assets/followers.png" />
                         </div>
-                        <p class="card-category">Followers Count</p>
-                        <h3 class="card-title" *ngIf="user">{{user.followers_count}}
-                            
+                        <p style="font-size:15pt;" class="card-category">Number of followers</p>
+
+                        <h3 class="card-title">{{user.followers_count}}
+
                         </h3>
                     </div>
                     <div class="card-footer">
@@ -48,57 +63,60 @@
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-6"  >
-                <div class="card card-stats" >
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
                     <div class="card-header card-header-warning card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">twitter-box</i>
+                            <img class="img" src="../../../../../assets/tweet.png" />
                         </div>
-                        <p class="card-category">Number of tweets</p>
-                        <h3 class="card-title" *ngIf="user">{{user.status_count}}         
+                        <p  style="font-size:15pt;"class="card-category">Number of tweets</p>
+                        <h3 class="card-title" >{{user.status_count}}
                         </h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
                             <i class="material-icons text-danger">warning</i>
-                            <a href="javascript:void(0)">Get More Space...</a>
+                            <a href="javascript:void(0)">Number of tweets</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
-                    <div class="card-header card-header-success card-header-icon">
+                    <div class="card-header card-header-warning card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">store</i>
+                            <img class="img" src="../../../../../assets/tweet.png" />
                         </div>
-                        <p class="card-category">Revenue</p>
-                        <h3 class="card-title">$34,245</h3>
+                        <p  style="font-size:15pt;"class="card-category">Profile Create Date</p>
+                        <h3 class="card-title" >{{user.created_at}}
+                        </h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">date_range</i> Last 24 Hours
+                            <i class="material-icons text-danger">warning</i>
+                            <a href="javascript:void(0)">{{user.profile_age}} Number of days older</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
-                    <div class="card-header card-header-danger card-header-icon">
+                    <div class="card-header card-header-warning card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">info_outline</i>
+                            <img class="img" src="../../../../../assets/tweet.png" />
                         </div>
-                        <p class="card-category">Fixed Issues</p>
-                        <h3 class="card-title">75</h3>
+                        <p  style="font-size:15pt;"class="card-category">Friends Count</p>
+                        <h3 class="card-title" >{{user.friends_count}}
+                        </h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">local_offer</i> Tracked from Github
+                            <i class="material-icons text-danger">warning</i>
+                            <a href="javascript:void(0)">Number of friends are relatively low</a>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="row">
             <div class="col-md-4">

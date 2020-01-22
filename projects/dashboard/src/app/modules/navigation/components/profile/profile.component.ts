@@ -12,13 +12,14 @@ import { FormsModule } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   
   constructor(private profileService: ProfileService, private alertify: AlertifyService) { }
-  username: string;
+  // username: string;
   user: any = {};
  
-  getUserProfile(){
-    console.log('clicked');
-    this.username = 'UnboxTherapy';
-    this.profileService.getUserProfileService(this.username).subscribe(res => {
+  getUserProfile(username){
+    if(username=='')
+      username='UnboxTherapy';
+
+    this.profileService.getUserProfileService(username).subscribe(res => {
       this.user = res;
       console.log(res);
       
