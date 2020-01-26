@@ -25,9 +25,9 @@ export class LandingComponent implements OnInit {
     localStorage.removeItem('queryId');
     localStorage.removeItem('tweet');
     localStorage.removeItem('name');
-    this.model.screenname = 'abc';
+    this.model.screenname = '2020von2020';
     // tslint:disable-next-line:max-line-length
-    this.model.query = 'Pres. Trump’s tariffs and the retaliation by countries he has targeted have resulted in job losses and higher costs for U.S. manufacturers, a federal study recently found.'
+    this.model.query = 'At least 80 "American terrorists" were killed in Iranian missile strikes on US targets in Iraq, Iranian state television claimed today.#VoiceOfNations';
 
     // tslint:disable-next-line:max-line-length
     // this.model.query = 'New poll shows Trump lead intact after criticism of Megyn Kelly: Donald Trump in the news: An online... http://t.co/LVhrFMWIpD #politics';

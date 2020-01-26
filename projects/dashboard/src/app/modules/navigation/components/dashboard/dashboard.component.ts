@@ -21,10 +21,13 @@ export class DashboardComponent implements OnInit {
     dataCollected: false,
     credibility: false,
     profile: false,
-    network: false,
+    network: false
   };
+  credAvailable = 0;
+  botAvailable = 0;
   overallProgress = 0;
-
+  breakpoint: any;
+  cHeight: any;
   color = 'primary';
   mode = 'buffer';
   value = 0;
@@ -33,13 +36,22 @@ export class DashboardComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver, private dashboardService: DashboardService, private alertify: AlertifyService) {}
 
   ngOnInit() {
+    this.breakpoint = (window.innerWidth <= 480) ? 1 : 2;
+    this.cHeight = (window.innerWidth <= 480) ? '300px' : '170px';
     this.tweet.tweet = localStorage.getItem('tweet');
     this.name = localStorage.getItem('name');
     this.queryId = +localStorage.getItem('queryId');
     // console.log('tweet', this.tweet.tweet);queryId
     this.getInitialCredibility();
     this.getAutomatedAcc();
+    this.getOverBot(1);
+    this.getOverCred(1);
     this.getProgress();
+  }
+
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 480) ? 1 : 2;
+    this.cHeight = (window.innerWidth <= 480) ? '300px' : '170px';
   }
 
   getInitialCredibility() {
@@ -72,7 +84,48 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  getOverCred(run: number) {
+    if (run === 0) {
+      this.getProgress();
+    }
+    this.dashboardService.getCredibility(0, this.queryId).subscribe(res => {
+      // console.log(res[0].credAmount);
+      if (res[0].credAmount === 0) {
+        this.credAvailable = 0;
+      } else {
+        this.credAvailable = 1;
+        this.model.overcred = res[0].credAmount;
+      }
+    }, error => {
+      // console.log('responce', error);
+      this.alertify.alert('Oh--ooh!', error, () => {});
+      // this.alertify.error(error);
+    });
+  }
+
+  getOverBot(run: number) {
+    if (run === 0) {
+      this.getProgress();
+    }
+    this.dashboardService.getCredibility(1, this.queryId).subscribe(res => {
+      // console.log(res[0].credAmount);
+      if (res[0].botAmount === 0) {
+        this.botAvailable = 0;
+        // this.model.overbot = 'In Progress';
+      } else {
+        this.botAvailable = 1;
+        this.model.overbot = res[0].botAmount;
+      }
+    }, error => {
+      // console.log('responce', error);
+      this.alertify.alert('Oh--ooh!', error, () => {});
+      // this.alertify.error(error);
+    });
+  }
+
   getProgress() {
+    // console.log("progress");
+    this.overallProgress = 0;
     this.dashboardService.progress(this.queryId).subscribe(res => {
       this.progress.dataCollected = res[0].dataCollected;
       this.progress.credibility = res[0].credibility;
@@ -97,5 +150,4 @@ export class DashboardComponent implements OnInit {
       this.alertify.alert('Oh--ooh!', error, () => {});
     });
   }
-
 }
