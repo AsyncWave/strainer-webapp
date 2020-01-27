@@ -28,15 +28,13 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <div style="height: 300px;" class="card card-profile">
-                    <div class="card-avatar">
-                        
-                    </div>
+                <div style="height: 300px;" class="card">
+                    
                     <div class="card-body" *ngIf="user">
                         <h6 class="card-category text-gray">Credibility Rating</h6>
                         <h4 class="card-title">{{user.user}}</h4>
                         <p class="card-description">{{user.description}}</p>
-                        <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a>
+                        
                     </div>
                 </div>
             </div>
@@ -85,7 +83,7 @@
                 <div class="card card-stats">
                     <div class="card-header card-header-warning card-header-icon">
                         <div class="card-icon">
-                            <img class="img" src="../../../../../assets/tweet.png" />
+                            <img class="img" src="../../../../../assets/calendar.png" />
                         </div>
                         <p  style="font-size:15pt;"class="card-category">Profile Create Date</p>
                         <h3 class="card-title" >{{user.created_at}}
@@ -103,7 +101,7 @@
                 <div class="card card-stats">
                     <div class="card-header card-header-warning card-header-icon">
                         <div class="card-icon">
-                            <img class="img" src="../../../../../assets/tweet.png" />
+                            <img class="img" src="../../../../../assets/friends.png" />
                         </div>
                         <p  style="font-size:15pt;"class="card-category">Friends Count</p>
                         <h3 class="card-title" >{{user.friends_count}}
@@ -170,7 +168,34 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+                 
+            <div class="col-lg-6 col-md-12" >
+                <div class="card" style="width: 100%;">
+                    <div class="card-header card-header-warning">
+                        <h4 class="card-title">Followers Impressions</h4>
+                        <p class="card-category">New replies after 15th September, 2019</p>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover" >
+                            <thead class="text-warning">
+                                <th>ID</th>
+                                <th>Reply</th>
+                                <th>Sentiment</th>
+                                <th>Category</th>
+                            </thead>
+                            <tbody *ngIf="tweetItems">
+                                <tr *ngFor="let item of tweetItems">
+                                    <td>1</td>
+                                    <td>{{item.tweet}}</td>
+                                    <td>{{item.sentiment}}</td>
+                                    <td>{{item.category}}</td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
             <div class="col-lg-6 col-md-12">
                 <div class="card">
                     <div class="card-header card-header-tabs card-header-primary">
@@ -442,50 +467,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-warning">
-                        <h4 class="card-title">Followers Impressions</h4>
-                        <p class="card-category">New replies after 15th September, 2019</p>
-                    </div>
-                    <div class="card-body table-responsive">
-                        <table class="table table-hover">
-                            <thead class="text-warning">
-                                <th>ID</th>
-                                <th>Reply</th>
-                                <th>Sentiment</th>
-                                <th>Category</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Dakota Rice</td>
-                                    <td>$36,738</td>
-                                    <td>Niger</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Minerva Hooper</td>
-                                    <td>$23,789</td>
-                                    <td>Curaçao</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Sage Rodriguez</td>
-                                    <td>$56,142</td>
-                                    <td>Netherlands</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Philip Chaney</td>
-                                    <td>$38,735</td>
-                                    <td>Korea, South</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+     
+        
     </div>
 </div>

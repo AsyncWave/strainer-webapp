@@ -14,13 +14,15 @@ export class ProfileComponent implements OnInit {
   constructor(private profileService: ProfileService, private alertify: AlertifyService) { }
   // username: string;
   user: any = {};
- 
+  tweetItems: any;
   getUserProfile(username){
     if(username=='')
       username='UnboxTherapy';
 
     this.profileService.getUserProfileService(username).subscribe(res => {
       this.user = res;
+      this.tweetItems = this.user.replies;
+      console.log(this.tweetItems);
       console.log(res);
       
     }, error => {

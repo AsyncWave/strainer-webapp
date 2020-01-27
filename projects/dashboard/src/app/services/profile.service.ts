@@ -11,7 +11,7 @@ import { TweetForInitialCredibility } from '../models/TweetForInitialCredibility
 export class ProfileService {  
     heroku = environment.malithHerokuApiUrl;
     test = environment.malithTestApiUrl;
-    baseUrl=this.test;
+    baseUrl=this.heroku;
   constructor(private http: HttpClient) { }
 
   getUserProfileService(username: string) {
