@@ -1,4 +1,8 @@
 .card-stats{
+  height:200px;
+  h3{
+    margin-top: 50px;
+  }
   .card-header{
     &.card-header-icon,
     &.card-header-text{
@@ -29,6 +33,7 @@
     & + .card-footer{
       border-top: 1px solid #eee;
       margin-top: 14px;
+      margin-bottom: 0px;
     }
 
     &.card-header-icon i {
@@ -42,5 +47,6 @@
 
   .card-body {
     text-align: right;
+    
   }
 }
