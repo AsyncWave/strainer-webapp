@@ -9,7 +9,7 @@ import { TweetForInitialCredibility } from '../models/TweetForInitialCredibility
   providedIn: 'root'
 })
 export class ProfileService {  
-    heroku = environment.malithHerokuApiUrl;
+    heroku = environment.malithApiUrl;
     test = environment.malithTestApiUrl;
     baseUrl=this.heroku;
   constructor(private http: HttpClient) { }
@@ -38,7 +38,7 @@ export class ProfileService {
   }
   }
   export class GetTwitterUserService {
-    heroku = environment.malithHerokuApiUrl;
+    heroku = environment.malithApiUrl;
     test = environment.malithTestApiUrl;
     baseUrl=this.test;
   
