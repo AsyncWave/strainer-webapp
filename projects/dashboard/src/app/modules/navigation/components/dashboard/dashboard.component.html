@@ -1,5 +1,5 @@
 <div class="grid-container">
-<mat-grid-list cols="2" rowHeight="170px">
+<mat-grid-list [cols]="2" rowHeight={{cHeight}}>
   <mat-grid-tile [colspan]="2" [rowspan]="1">
     <mat-card class="dashboard-card">
       <mat-card-header>
@@ -13,7 +13,7 @@
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
-  <mat-grid-list cols="2" rowHeight="300px">
+<mat-grid-list [cols]="breakpoint" rowHeight="300px">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
       <mat-card class="dashboard-card">
         <mat-card-header>
@@ -62,48 +62,104 @@
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
-  </mat-grid-list>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            Progress
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-        <mat-progress-bar
-          [color]="color"
-          [mode]="mode"
-          value={{overallProgress}}
-          [bufferValue]="bufferValue">
-        </mat-progress-bar>
-        <br>
+</mat-grid-list>
+<mat-grid-list [cols]="2" rowHeight="350px">
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-card class="dashboard-card">
+      <mat-card-header>
+        <mat-card-title>
+          Progress
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-card-content">
+      <mat-progress-bar
+        [color]="color"
+        [mode]="mode"
+        value={{overallProgress}}
+        [bufferValue]="bufferValue">
+      </mat-progress-bar>
+      <br>
+      <div>
+        <button mat-icon-button class="more-button" (click)="getProgress()">
+          <mat-icon>autorenew</mat-icon>
+        </button>
+      <h3>Overall progress is at</h3><h1>{{overallProgress}}%</h1>
+      <br> 
+      </div>
+      <div>
+        <mat-horizontal-stepper [linear]="true" #stepper aria-disabled="true">
+          <mat-step completed="true">
+            <ng-template matStepLabel>Collecting Data</ng-template>
+          </mat-step>
+          <mat-step completed={{this.progress.dataCollected}}>
+            <ng-template matStepLabel>Content Credibility</ng-template>
+          </mat-step>
+          <mat-step completed={{this.progress.credibility}}>
+            <ng-template matStepLabel>User Crediility</ng-template>
+          </mat-step>
+          <mat-step completed={{this.progress.profile}}>
+            <ng-template matStepLabel>Forcast</ng-template>
+          </mat-step>
+          <mat-step completed={{this.progress.network}}>
+            <ng-template matStepLabel>Done</ng-template>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list [cols]="breakpoint" rowHeight="300px">
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <mat-card class="dashboard-card">
+      <mat-card-header>
+        <mat-card-title>
+          Overall Credibility Ratio
+          <button mat-icon-button class="more-button" (click)="getOverCred(0)">
+            <mat-icon>autorenew</mat-icon>
+          </button>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content *ngIf="credAvailable" class="dashboard-card-content">
+      <div>
+        Overall analysis suggested that this context has the credibility of <br> 
+        <h1>{{model?.overcred | number : '1.2-2'}} %</h1>
+      </div>
+      </mat-card-content>
+      <mat-card-content *ngIf="!credAvailable" class="dashboard-card-content">
+          <h1>In Progress</h1>
+          <br>
+          <div>
+            ...click on <mat-icon>autorenew</mat-icon> to refresh.
+          </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <mat-card class="dashboard-card">
+      <mat-card-header>
+        <mat-card-title>
+          Overall Automated Account Ratio
+          <button mat-icon-button class="more-button" (click)="getOverBot(0)">
+            <mat-icon>autorenew</mat-icon>
+          </button>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content *ngIf="botAvailable" class="dashboard-card-content">
         <div>
-        <h3>Overall progress is at</h3><h1>{{overallProgress}}%</h1>
-        <br> 
+          Twitter accounts that tweeted about this context are, <br> 
+          <h1>{{model?.overbot | number : '1.2-2'}} %</h1>
         </div>
-        <div>
-          <mat-horizontal-stepper [linear]="true" #stepper aria-disabled="true">
-            <mat-step completed="true">
-              <ng-template matStepLabel>Collecting Data</ng-template>
-            </mat-step>
-            <mat-step completed={{this.progress.dataCollected}}>
-              <ng-template matStepLabel>Content Credibility</ng-template>
-            </mat-step>
-            <mat-step completed={{this.progress.credibility}}>
-              <ng-template matStepLabel>User Crediility</ng-template>
-            </mat-step>
-            <mat-step completed={{this.progress.profile}}>
-              <ng-template matStepLabel>Forcast</ng-template>
-            </mat-step>
-            <mat-step completed={{this.progress.network}}>
-              <ng-template matStepLabel>Done</ng-template>
-            </mat-step>
-          </mat-horizontal-stepper>
-        </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+        <div>Bot accounts.</div>
+      </mat-card-content>
+      <mat-card-content *ngIf="!botAvailable" class="dashboard-card-content">
+          <h1>In Progress</h1>
+          <br>
+          <div>
+            ...click on <mat-icon>autorenew</mat-icon> to refresh.
+          </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
 </div>
