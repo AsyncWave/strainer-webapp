@@ -6,6 +6,9 @@ export const environment = {
   production: false,
   nishanTwitterApiUrl: 'https://strainer-twitter-server.herokuapp.com/',
   nishanApiUrl: 'https://strainer-rest-api.herokuapp.com/',
+  malithApiUrl : 'https://strainer-credibility-analyzer.herokuapp.com/',
+  malithTestApiUrl:'http://127.0.0.1:5000/',
+
   // nishanTwitterApiUrl: 'http://localhost:4000/',
   // nishanApiUrl: 'http://127.0.0.1:5000/'
 };
