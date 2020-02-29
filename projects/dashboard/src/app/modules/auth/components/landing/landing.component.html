@@ -22,6 +22,9 @@
                             <mat-form-field class="example-full-width">
                                 <textarea [matTextareaAutosize] matInput placeholder="Tweet" required [(ngModel)]="model.query" name="query" matTooltip="Insert suspicious tweet here..."></textarea>
                             </mat-form-field>
+                            <mat-form-field class="example-full-width">
+                                <textarea [matTextareaAutosize] matInput placeholder="Keyphrase" required [(ngModel)]="model.keyword_list" name="keyphrase" matTooltip="Insert generated keyphrase here..."></textarea>
+                            </mat-form-field>
                             <br>
                             <span>
                                     <button [disabled]="!queryForm.valid" mat-raised-button color="primary" matTooltip="Click to send">SEND</button>&nbsp;
