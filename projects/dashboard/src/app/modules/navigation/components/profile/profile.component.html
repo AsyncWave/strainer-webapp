@@ -1,9 +1,10 @@
+
 <div class="main-content">
 
     <div class="container-fluid">
         <div class="row">
             <div class="input-group no-border" style="width: 50%; align-content: center;">
-                <input #box placeholder="Search a twitter user...">
+                <input style="border-radius: 10px;" #box placeholder="Search a twitter user...      ">
                 <button (click)="getUserProfile(box.value)" mat-raised-button
                     class="btn btn-white btn-round btn-just-icon">
                     <i class="material-icons">search</i>
@@ -43,10 +44,11 @@
                     <!-- <div class="card-header card-header-warning">
                         
                     </div> -->
-                    <div class="card-body" *ngIf="user">
+                    <div class="card-body" *ngIf="user" >
                         <h4 class="card-title">Agreement Score</h4>
-                        <div class="ct-chart" id="agreementScoreChart"></div>
-                        <p class="card-description">Score : {{user.agreement_score}}</p>
+                        <div class="ct-chart" id="agreementScoreChart" ></div>
+                        <p class="card-description" *ngIf="user.status_count > 300">Agreement Score : {{user.agreement_score}}</p>
+                        <p class="card-description" *ngIf="user.status_count < 300">Warning : Insufficient replies!</p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -62,13 +64,18 @@
                     <div class="card-body" *ngIf="user">
 
                         <h4 class="card-title">Credibility Rating</h4>
-                        <p class="card-description">Rating : {{credibility}}</p>
-
+                        <img style="width: 250px; height: 60px;  margin-top: 20px; margin-bottom: 30px;" *ngIf="credibility==5" class="img" src="../../../../../assets/5_star.png" />
+                        <img style="width: 250px; height: 60px; margin-top: 20px; margin-bottom: 30px;" *ngIf="credibility==4" class="img" src="../../../../../assets/4_star.png" />
+                        <img style="width: 250px; height: 60px;  margin-top: 20px; margin-bottom: 30px;" *ngIf="credibility==3" class="img" src="../../../../../assets/3_star.png" />
+                        <img style="width: 250px; height: 60px;  margin-top: 20px; margin-bottom: 30px;" *ngIf="credibility==2" class="img" src="../../../../../assets/2_star.png" />
+                        <img style="width: 250px; height: 60px;  margin-top: 20px; margin-bottom: 30px;" *ngIf="credibility==1" class="img" src="../../../../../assets/1_star.png" />
+                        <p class="card-description">@{{user.screen_name}} can be rated as {{credibility}} star rated user</p>
+                        
                     </div>
                     <div class="card-footer">
 
                         <div class="stats">
-                            <i class="material-icons text-danger">mood</i>
+                            <i class="material-icons color_green">stars</i> Predicted rating from the system
 
                         </div>
                     </div>
@@ -89,7 +96,13 @@
                         </ul>
 
                     </div>
-                    
+                    <div class="card-footer">
+
+                        <div class="stats">
+                            <i class="material-icons color_green">thumbs_up_down</i> Type of the person
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -342,7 +355,7 @@
                                                 </label>
                                             </div>
                                         </td>
-                                        <td>Flooded: One year later, assessing what was lost and what was found when
+                                        <td>One year later, assessing what was lost and what was found when
                                             a ravaging rain swept through metro Detroit
                                         </td>
                                         <td class="td-actions text-right">
