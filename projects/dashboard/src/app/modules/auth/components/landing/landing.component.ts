@@ -26,6 +26,7 @@ export class LandingComponent implements OnInit {
     localStorage.removeItem('tweet');
     localStorage.removeItem('name');
     this.model.screenname = '2020von2020';
+    this.model.keyword_list = "['american terrorists iranian ', 'missile strikes us ', 'iraq killing terrorist ', 'strike ']";
     // tslint:disable-next-line:max-line-length
     this.model.query = 'At least 80 "American terrorists" were killed in Iranian missile strikes on US targets in Iraq, Iranian state television claimed today.#VoiceOfNations';
 
@@ -46,7 +47,7 @@ export class LandingComponent implements OnInit {
   }
 
   sendQuery() {
-    // console.log(this.model.keyword_list);
+    console.log(this.model.keyword_list);
     this.model.keyword_list = this.model.keyword_list.replace(/'/g, '"');
     // console.log(this.model);
     this.model.screenname = this.model.screenname.replace(/@/g, '').toLowerCase();

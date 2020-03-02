@@ -114,6 +114,12 @@ export class DashboardComponent implements OnInit {
         // this.model.overbot = 'In Progress';
       } else {
         this.botAvailable = 1;
+        if(res[0].botAmount > 50) {
+          res[0].botAmount = res[0].botAmount - 30
+        }
+        if(res[0].botAmount > 40) {
+          res[0].botAmount = res[0].botAmount - 30
+        }
         this.model.overbot = res[0].botAmount;
       }
     }, error => {
