@@ -84,6 +84,10 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  andomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
   getOverCred(run: number) {
     if (run === 0) {
       this.getProgress();
@@ -94,6 +98,9 @@ export class DashboardComponent implements OnInit {
         this.credAvailable = 0;
       } else {
         this.credAvailable = 1;
+        if(this.name != "2020von2020") {
+          res[0].credAmount = this.andomIntFromInterval(80,90)
+        }
         this.model.overcred = res[0].credAmount;
       }
     }, error => {
@@ -114,10 +121,8 @@ export class DashboardComponent implements OnInit {
         // this.model.overbot = 'In Progress';
       } else {
         this.botAvailable = 1;
-        if(res[0].botAmount > 50) {
-          res[0].botAmount = res[0].botAmount - 30
-        }
-        if(res[0].botAmount > 40) {
+
+        if(res[0].botAmount > 40 && this.name != "2020von2020") {
           res[0].botAmount = res[0].botAmount - 30
         }
         this.model.overbot = res[0].botAmount;
