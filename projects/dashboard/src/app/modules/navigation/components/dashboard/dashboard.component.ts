@@ -99,7 +99,7 @@ export class DashboardComponent implements OnInit {
       } else {
         this.credAvailable = 1;
         if(this.name != "2020von2020") {
-          res[0].credAmount = this.andomIntFromInterval(80,90)
+          res[0].credAmount = this.andomIntFromInterval(70,90)
         }
         this.model.overcred = res[0].credAmount;
       }
