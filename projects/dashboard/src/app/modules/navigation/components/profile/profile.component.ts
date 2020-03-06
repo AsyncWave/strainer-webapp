@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
       this.credibility = this.user.credibility;
       this.startAnimationForLineChart();
       
-      console.log(res);
+      // console.log(res);
 
     }, error => {
       // console.log('responce', error);
@@ -120,7 +120,7 @@ export class ProfileComponent implements OnInit {
   };
   ngOnInit() {
     let username = localStorage.getItem('name');
-    console.log(username);
+    // console.log(username);
     this.getUserProfile(username);
     /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 

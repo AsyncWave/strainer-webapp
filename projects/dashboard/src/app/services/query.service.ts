@@ -28,7 +28,7 @@ export class QueryService {
   sendQuery(model: Query) {
     const headers = new HttpHeaders({'Content-type': 'application/json'});
     const options = { headers };
-    console.log('model', model);
+    // console.log('model', model);
     return this.http.post<any>(this.baseUrl + 'query', model, options).pipe(map(response => response))
     .pipe(
       catchError(this.handleError)

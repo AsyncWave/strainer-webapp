@@ -47,8 +47,8 @@ export class LandingComponent implements OnInit {
   }
 
   sendQuery() {
-    console.log(this.model.keyword_list);
-    this.model.keyword_list = this.model.keyword_list.replace(/'/g, '"');
+    // console.log(this.model.keyword_list);
+    // this.model.keyword_list = this.model.keyword_list.replace(/'/g, '"');
     // console.log(this.model);
     this.model.screenname = this.model.screenname.replace(/@/g, '').toLowerCase();
     this.queryService.checkExists(this.model.screenname).subscribe(res => {
