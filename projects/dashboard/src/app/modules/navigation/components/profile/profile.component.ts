@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   constructor(private profileService: ProfileService, private alertify: AlertifyService) { }
   // username: string;
   user: any = {};
+  year = new Date().getFullYear();
   tweetItems: any;
   credibility: any;
   agreement_score: any;

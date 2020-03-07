@@ -13,6 +13,7 @@ import { Progress } from 'projects/dashboard/src/app/models/Progress';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  year = new Date().getFullYear();
   tweet: TweetForInitialCredibility = { tweet: 'null'};
   name: string;
   model: any = {};
